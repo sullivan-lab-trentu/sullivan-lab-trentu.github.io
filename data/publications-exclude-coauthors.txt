@@ -1,0 +1,5 @@
+# Co-authors whose papers belong to a different Ryan C. Sullivan, whose work
+# OpenAlex has merged into Ryan's author record. Any paper with one of these
+# co-authors is dropped. One per line as "Surname, First name"; matching uses
+# surname plus first initial.
+Pryor, Sara   # regional climate and WRF-Chem modelling, Indiana and Cornell (Ryan, 20 Nov 2026)

@@ -12,6 +12,8 @@ What it does
   3. Applies two hand-edited lists in data/:
        publications-exclude.txt  DOIs or OpenAlex IDs to remove
        publications-include.txt  DOIs to add (papers OpenAlex misses or drops)
+       publications-exclude-coauthors.txt  co-authors marking papers by a
+                                 different Ryan C. Sullivan
   4. Bolds Ryan Sullivan and underlines group members (data/group-members.txt).
   5. Replaces the text between the PUBS markers in publications.html, but only
      if the list itself changed, so the page is not rewritten every week.
@@ -181,10 +183,18 @@ def better(a, b):
 
 def select(works, exclude, include_works):
     excl = {norm_doi(x) for x in exclude} | {norm_id(x) for x in exclude}
+    # Co-authors who only appear on papers by a different Ryan C. Sullivan,
+    # whose works OpenAlex has merged into this author record.
+    other_ryan = member_keys("publications-exclude-coauthors.txt")
     kept, dropped = {}, []
     for w in works:
         if norm_doi(w.get("doi")) in excl or norm_id(w.get("id")) in excl:
             dropped.append((w, "on exclude list"))
+            continue
+        hit = next((a["author"].get("display_name") for a in (w.get("authorships") or [])
+                    if name_key((a.get("author") or {}).get("display_name")) in other_ryan), None)
+        if hit:
+            dropped.append((w, "other Ryan C. Sullivan (co-author " + hit + ")"))
             continue
         reason = drop_reason(w)
         if reason:
@@ -206,9 +216,9 @@ def select(works, exclude, include_works):
 
 
 # ---------------------------------------------------------------- formatting
-def member_keys():
+def member_keys(name="group-members.txt"):
     keys = set()
-    for line in read_list("group-members.txt"):
+    for line in read_list(name):
         if "," in line:
             last, first = [p.strip() for p in line.split(",", 1)]
         else:

@@ -12,6 +12,7 @@ on:
       - "data/group-members.txt"
       - "data/publications-exclude.txt"
       - "data/publications-include.txt"
+      - "data/publications-exclude-coauthors.txt"
 
 permissions:
   contents: write

@@ -1,3 +1,8 @@
 # Papers to remove from the publication list, one per line.
 # Use the DOI (10.xxxx/...) or the OpenAlex ID (W1234567890).
 # Text after # is a comment.
+# Papers by a different Ryan C. Sullivan (with S. C. Pryor), also caught by
+# publications-exclude-coauthors.txt:
+10.5194/acp-17-1511-2017
+10.5194/acp-16-397-2016
+10.5194/acp-17-14457-2017
