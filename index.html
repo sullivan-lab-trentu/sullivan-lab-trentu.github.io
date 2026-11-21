@@ -7,8 +7,8 @@
 <meta name="description" content="The Sullivan Lab at Trent University studies how chemicals transform in the environment at the molecular level. Now recruiting graduate students, postdoctoral associates, and a lab manager.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Oswald:wght@500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/site.css?v=9">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600;700&family=Oswald:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css?v=10">
 <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://sullivan-lab-trentu.github.io/">
@@ -21,16 +21,20 @@
 
 <header class="site-header">
   <div class="wrap header-inner">
-    <a class="brand" href="index.html">Sullivan Lab <span>Trent University</span></a>
-    <nav aria-label="Main">
+    <a class="brand" href="index.html">Sullivan Lab</a>
+    <a class="brand-logo" href="https://www.trentu.ca/"><span><img src="https://www.trentu.ca/themes/custom/trent/dist/images/logo.png" alt="Trent University" width="146" height="44"></span></a>
+  </div>
+  <div class="nav-ribbon">
+    <div class="wrap">
+      <nav aria-label="Main">
       <a href="#research">Research</a>
       <a href="#approaches">Approaches</a>
       <a href="#pi">PI</a>
       <a href="#trent">Trent</a>
-      <a href="#join">Join us</a>
-      <a href="#apply">Apply</a>
+      <a href="#join" class="join">Join us</a>
       <a href="publications.html">Publications</a>
-    </nav>
+      </nav>
+    </div>
   </div>
 </header>
 
@@ -230,11 +234,26 @@
 
 <footer class="site-footer">
   <div class="wrap">
+    <a class="footer-logo" href="https://www.trentu.ca/"><img src="https://www.trentu.ca/themes/custom/trent/dist/images/logo.png" alt="Trent University" width="172" height="52" loading="lazy"></a>
     <p><strong>Sullivan Lab</strong> &middot; <a href="https://www.trentu.ca/chemistry/">Department of Chemistry</a> and <a href="https://www.trentu.ca/environment/">Trent School of the Environment</a> &middot; Trent University, Peterborough, Ontario, Canada</p>
     <p>Our earlier work at Carnegie Mellon University: <a href="https://groups.chem.cmu.edu/sullivan/">Sullivan Lab at CMU</a></p>
     <p class="small">Campus photos and campus video: Trent University. Chemical Sciences Building photo: courtesy of Teeple Architects. Research videos: Carnegie Mellon University.</p>
   </div>
 </footer>
+
+<script>
+/* Highlights the menu link for the section on screen. */
+(function () {
+  var links = [].slice.call(document.querySelectorAll('nav a[href^="#"]'));
+  var secs = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+  function spy() {
+    var y = window.scrollY + 140, cur = null;
+    secs.forEach(function (s) { if (s && s.offsetTop <= y) cur = s.id; });
+    links.forEach(function (a) { a.classList.toggle('on', a.getAttribute('href') === '#' + cur); });
+  }
+  window.addEventListener('scroll', spy, { passive: true }); spy();
+})();
+</script>
 
 </body>
 </html>
