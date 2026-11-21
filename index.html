@@ -27,7 +27,7 @@
 </header>
 
 <section class="hero" aria-label="Introduction">
-  <img src="images/trent-campus-aerial-river.jpg" alt="Aerial view of Trent University's Symons Campus on both banks of the Otonabee River in autumn">
+  <img src="images/trent-bata-library-sunset.jpg" alt="Bata Library and the Chemical Sciences Building on the Otonabee River at sunset">
   <div class="hero-text">
     <div class="wrap">
       <h1>Understanding chemical transformations in the environment to design safer chemicals and cleaner water</h1>
@@ -120,8 +120,8 @@
       <p>Trent is widely recognized for its strengths in interdisciplinary environmental research and education. Its Water Quality Centre and Canadian Environmental Modelling Centre give the group direct access to advanced mass spectrometry and chemical fate modelling. Peterborough is about a 90-minute drive from Toronto.</p>
     </div>
     <figure>
-      <img src="images/trent-bata-library-sunset.jpg" alt="Bata Library and the Chemical Sciences Building on the Otonabee River at sunset" loading="lazy">
-      <figcaption>The Otonabee River at sunset, with the Bata Library and, across the river by the bridge, the Chemical Sciences Building. Photo: Trent University.</figcaption>
+      <img src="images/trent-campus-aerial-river.jpg" alt="Aerial view of Trent University's Symons Campus on both banks of the Otonabee River in autumn" loading="lazy">
+      <figcaption>Trent University's Symons Campus on both banks of the Otonabee River. Photo: Trent University.</figcaption>
     </figure>
   </div>
 </section>
@@ -155,10 +155,31 @@
   </article>
 </section>
 
-<figure class="wide-photo">
-  <img src="images/trent-campus-aerial-bridge.jpg" alt="High-angle aerial view of Trent University's campus and the Faryon Bridge over the Otonabee River" loading="lazy">
-  <figcaption class="wrap">Trent's Symons Campus and the Faryon Bridge. Photo: Trent University.</figcaption>
+<figure class="wide-photo campus-loop">
+  <video id="campus-loop" muted autoplay playsinline preload="auto" aria-label="Short silent montage of Trent's Symons Campus: rowing on the Otonabee River, a science building at dusk, researchers in the lab, a research garden, and the river from above" src="https://trentu.widen.net/content/sgasat0sad/mp4/Trent-main-homepage-video.mp4?quality=hd&amp;u=963kki"></video>
+  <figcaption class="wrap">Scenes from Trent's Symons Campus. Video: Trent University.</figcaption>
 </figure>
+<script>
+/* Plays selected shots from Trent's homepage video, in order, on a loop. */
+(function () {
+  var v = document.getElementById('campus-loop');
+  if (!v) return;
+  var shots = [[0.1, 3.85], [29.3, 32.8], [40.1, 41.9], [48.1, 51.9], [36.6, 39.85], [57.2, 61.8]];
+  var i = 0;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    v.removeAttribute('autoplay'); v.pause();
+    v.addEventListener('loadedmetadata', function () { v.currentTime = shots[0][0]; });
+    return;
+  }
+  function jump(n) { i = n % shots.length; v.currentTime = shots[i][0]; }
+  v.addEventListener('loadedmetadata', function () { jump(0); v.play().catch(function () {}); });
+  v.addEventListener('ended', function () { jump(0); v.play().catch(function () {}); });
+  (function tick() {
+    if (!v.paused && !v.seeking && v.currentTime >= shots[i][1]) jump(i + 1);
+    requestAnimationFrame(tick);
+  })();
+})();
+</script>
 
 <section class="wrap section" id="apply">
   <h2>How to apply</h2>
@@ -179,7 +200,7 @@
   <div class="wrap">
     <p><strong>Sullivan Lab</strong> &middot; Department of Chemistry and Trent School of the Environment &middot; Trent University, Peterborough, Ontario, Canada</p>
     <p>Our earlier work at Carnegie Mellon University: <a href="https://groups.chem.cmu.edu/sullivan/">Sullivan Lab at CMU</a></p>
-    <p class="small">Campus photos: Trent University. Chemical Sciences Building photo: courtesy of Teeple Architects. Videos: Carnegie Mellon University.</p>
+    <p class="small">Campus photos and campus video: Trent University. Chemical Sciences Building photo: courtesy of Teeple Architects. Research videos: Carnegie Mellon University.</p>
   </div>
 </footer>
 

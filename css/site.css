@@ -53,7 +53,7 @@ nav a:hover { color: var(--blue); }
 
 /* Hero */
 .hero { position: relative; }
-.hero img { width: 100%; height: 520px; object-fit: cover; object-position: center 60%; }
+.hero img { width: 100%; height: 520px; object-fit: cover; object-position: center 25%; }
 .hero-text {
   position: absolute; inset: 0; display: flex; align-items: flex-end;
   background: linear-gradient(to top, rgba(10, 30, 22, 0.78) 0%, rgba(10, 30, 22, 0.15) 60%, rgba(10, 30, 22, 0) 100%);
@@ -89,6 +89,7 @@ figcaption { font-size: 0.85rem; color: var(--muted); margin-top: 8px; }
 
 .wide-photo img { width: 100%; max-height: 520px; object-fit: cover; }
 .wide-photo figcaption { margin-top: 8px; }
+.wide-photo video { width: 100%; max-height: 520px; aspect-ratio: 16 / 9; object-fit: cover; display: block; background: #1f2a26; }
 
 /* Read more links */
 .read-more-title { margin-top: 30px; }
