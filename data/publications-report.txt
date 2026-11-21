@@ -1,4 +1,4 @@
-Report from the last change to the list (20 November 2026).
+Report from the last change to the list (21 November 2026).
 148 works from OpenAlex; 77 kept; 71 dropped.
 
 Dropped (add a DOI to publications-include.txt to restore one):

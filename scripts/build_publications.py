@@ -151,15 +151,19 @@ def fetch_author_works():
     return works
 
 
-def crossref_year(doi):
-    """Journal issue year from Crossref, or None."""
+def crossref_record(doi):
+    """The Crossref record for a DOI, or {}."""
     try:
         req = urllib.request.Request("https://api.crossref.org/works/" + urllib.parse.quote(doi, safe="/"),
                                      headers={"User-Agent": f"publication-list ({CONTACT})"})
         with urllib.request.urlopen(req, timeout=30) as r:
-            m = json.load(r).get("message", {})
+            return json.load(r).get("message", {}) or {}
     except Exception:
-        return None
+        return {}
+
+
+def crossref_year(m):
+    """Journal issue year from a Crossref record, or None."""
     for path in (("journal-issue", "published-print"), ("published-print",),
                  ("issued",), ("published",)):
         d = m
@@ -173,11 +177,17 @@ def crossref_year(doi):
 
 
 def set_years(pubs):
-    """Replace OpenAlex's first-online year with the journal issue year."""
+    """Replace OpenAlex's first-online year with the journal issue year, and
+    give book chapters their book title, publisher and pages from Crossref."""
     misses = 0
     for w in pubs:
         doi = norm_doi(w.get("doi"))
-        y = crossref_year(doi) if doi else None
+        m = crossref_record(doi) if doi else {}
+        if w.get("type") in CHAPTER_TYPES and m:
+            w["_book"] = (m.get("container-title") or [""])[0]
+            w["_publisher"] = m.get("publisher") or ""
+            w["_pages"] = m.get("page") or ""
+        y = crossref_year(m)
         if y:
             w["publication_year"] = y
         else:
@@ -352,11 +362,18 @@ def title_with_stop(w):
 
 
 def format_chapter(w, members):
-    book = html.escape(source_of(w).get("display_name") or "")
+    # Crossref's book title; OpenAlex often gives only "Elsevier eBooks" and the like
+    book = html.escape(w.get("_book") or "")
+    if not book and not re.search(r"\bebooks?\b", (source_of(w).get("display_name") or "").lower()):
+        book = html.escape(source_of(w).get("display_name") or "")
     doi = norm_doi(w.get("doi"))
     link = (f' <a href="https://doi.org/{html.escape(doi)}">doi:{html.escape(doi)}</a>'
             if doi else "")
     where = f" In <em>{book}</em>," if book else ""
+    if w.get("_publisher"):
+        where += f" {html.escape(w['_publisher'])},"
+    if w.get("_pages"):
+        where += " pp. " + html.escape(w["_pages"]).replace("-", "&ndash;") + ","
     return (f'<li>{format_authors(w, members)}. {title_with_stop(w)}'
             f'{where} {w.get("publication_year")}.{link}</li>')
 
