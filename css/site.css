@@ -13,7 +13,7 @@
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
-  font: 17px/1.65 "Open Sans", Arial, sans-serif;
+  font: 18px/1.65 "Open Sans", Arial, sans-serif;
   color: var(--ink);
   background: var(--white);
 }
@@ -107,7 +107,7 @@ figcaption { font-size: 0.85rem; color: var(--muted); margin-top: 8px; }
 
 /* Phones */
 @media (max-width: 720px) {
-  body { font-size: 16px; }
+  body { font-size: 17px; }
   nav a { margin-left: 0; margin-right: 14px; font-size: 0.78rem; }
   .hero img { height: 420px; }
   .hero h1 { font-size: 1.6rem; }
