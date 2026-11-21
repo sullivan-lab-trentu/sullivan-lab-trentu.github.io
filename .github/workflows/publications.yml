@@ -1,0 +1,45 @@
+# Rebuilds publications.html from OpenAlex every Monday, and whenever the
+# script or the lists in data/ change. Commits only when the list changed.
+name: Update publications
+
+on:
+  schedule:
+    - cron: "23 10 * * 1"     # Mondays 10:23 UTC (5:23 Eastern standard time)
+  workflow_dispatch:          # "Run workflow" button on the Actions tab
+  push:
+    paths:
+      - "scripts/build_publications.py"
+      - "data/group-members.txt"
+      - "data/publications-exclude.txt"
+      - "data/publications-include.txt"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publications
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build the publication list
+        env:
+          OPENALEX_API_KEY: ${{ secrets.OPENALEX_API_KEY }}   # optional
+        run: python3 scripts/build_publications.py
+      - name: Commit if the list changed
+        run: |
+          if git diff --quiet; then
+            echo "No change to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add publications.html data/publications-report.txt
+          git commit -m "Update publication list from OpenAlex"
+          git push

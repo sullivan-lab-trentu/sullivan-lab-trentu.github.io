@@ -1,0 +1,24 @@
+# Group members, underlined in the publication list.
+# One per line as "Surname, First name". Matching uses surname plus first initial.
+# Taken from the mentee list in Ryan's CV (graduate students and postdocs).
+# Add undergraduate co-authors and new Trent members as needed.
+Leeman, Peter
+Beydoun, Hassan
+Ahern, Adam
+Gorkowski, Kyle
+Polen, Michael
+Ye, Qing
+Jahn, Leif
+Wen, Zuowei
+Jahl, Lydia
+Brubaker, Thomas
+Bowers, Bailey
+Monroe, Luke
+Weatherholt, Riley
+Flores-Brito, Wendy
+Thornhill, Graham
+Bonomo, Daniel
+Baker, Kiara
+Doyle, Dennis
+Boyer, Hallie
+Fahy, William
