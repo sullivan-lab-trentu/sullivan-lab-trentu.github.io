@@ -1,0 +1,74 @@
+Report from the last change to the list (21 November 2026).
+148 works from OpenAlex; 78 kept; 70 dropped.
+
+Dropped (add a DOI to publications-include.txt to restore one):
+  2026  [type peer-review]  Author response for "Evolution of the Photosensitized Production of Singlet Oxygen by Aqueous Extracts of Biomass-Burning Aerosol"  10.1039/d6em00131a/v3/response1
+  2026  [type peer-review]  Author response for "Evolution of the Photosensitized Production of Singlet Oxygen by Aqueous Extracts of Biomass-Burning Aerosol"  10.1039/d6em00131a/v2/response1
+  2025  [type conference-abstract]  Analysis of nano- and micro- particles in ice cores from polar and high altitude glaciers by spICP-TOFMS  10.5194/egusphere-egu25-7227
+  2022  [type supplementary-materials]  Supplementary material to "A universally applicable method of calculating confidence bands for ice nucleation spectra derived from droplet freezing experiments"  10.5194/amt-2022-141-supplement
+  2022  [type peer-review]  Response to Referee 2  10.5194/amt-2022-141-ac2
+  2022  [type peer-review]  Response to Referee 1  10.5194/amt-2022-141-ac1
+  2021  [type dataset]  Single-particle elemental analysis of vacuum bag dust samples collected from the International Space Station by SEM/EDX and sp-ICP-ToF-MS  10.6084/m9.figshare.13619029
+  2021  [type peer-review]  Author response for "Volcanic ash ice nucleation activity is variably reduced by aging in water and sulfuric acid: the effects of leaching, dissolution, and precipitation"  10.1039/d1ea00071c/v2/response1
+  2020  [type conference-abstract]  How many particles do we need to measure aerosol mixing state?  10.5194/egusphere-egu2020-6132
+  2020  [type conference-abstract]  Transformation products and reaction mechanisms of UV/sulfite remediation of PFOS, PFOA, PFBS, and GenX desorbed from carbon nanotubes  W3206910903
+  2020  [type conference-abstract]  Elemental composition and number concentration of individual nano- and micro- dust particles measured by single particle-ICPMS in East Antarctic ice during the last climatic cycle  W3209249381
+  2020  [type conference-abstract]  Toward a discrimination between anthropogenic and natural nanoparticles of atmospheric origin entrapped in ancient glacier ice  W3214287620
+  2020  [type conference-abstract]  Single Particle Inductively Coupled Plasma Mass Spectrometry for Suspended Micro- and Nanoparticle Number Concentration and Elemental Composition Measurement with Application to Ice Cores  W3215583182
+  2019  [type conference-abstract]  Exposure Beyond Mass: High-spatial Resolution Exposure to Source-resolved Atmospheric Particle Number and Chemical Mixing State  10.1097/01.ee9.0000605744.93522.67
+  2019  [type conference-abstract]  Probing the evolution of the phase separations, acidity, and morphology of optically tweezed complex particles  W3021368174
+  2019  [type conference-abstract]  The atmospheric evolution of the ice nucleation properties of biomass burning aerosol  W3043621592
+  2019  [type conference-abstract]  The Evolution of the Ice Nucleating Properties of Biomass-Burning Aerosol During Simulated Atmospheric Chemical Aging  W3180806930
+  2018  [type book-chapter]  Characterization of Individual Aerosol Particles  10.1016/b978-0-12-813641-6.00012-1
+  2018  [type supplementary-materials]  Supplementary material to "The Fifth International Workshop on Ice Nucleation phase 2 (FIN-02): Laboratory intercomparison of ice nucleation measurements"  10.5194/amt-2018-191-supplement
+  2018  [type conference-abstract]  Using an Advanced Single Particle Mass Spectrometer on a Mobile Platform to Study Spatial Variability of Population Exposure to Traffic and Cooking Particulate Matter in Pittsburgh PA  W3022166438
+  2018  [type peer-review]  Updated reference  10.5194/amt-2018-134-ac1
+  2018  [type peer-review]  Response to Referee 1  10.5194/amt-2018-134-ac2
+  2018  [type supplementary-materials]  Supplementary material to "A comprehensive characterization of ice nucleation by three different types of cellulose particles immersed in water: lessons learned and future research directions"  10.5194/acp-2018-933-supplement
+  2018  [type peer-review]  Response to Gabor Vali  10.5194/amt-2018-134-ac4
+  2018  [type peer-review]  Response to Referee 2 Benjamin Murray  10.5194/amt-2018-134-ac3
+  2017  [type conference-abstract]  Heterogeneous kinetics of N 2 O 5 reactive uptake and chlorine activation in authentic biomass burning aerosol  W2996794838
+  2017  [type conference-abstract]  High Spatial Resolution of Atmospheric Particle Mixing State and Its Links to Particle Evolution in a Metropolitan Area  W3015283418
+  2017  [type conference-abstract]  Comprehensive Examination of Bottom Ash, Soil Dust, and Direct Emissions and Aging of Laboratory Biomass Burning as Potential Sources of Ice Nucleating Particles  W3046790143
+  2017  [type peer-review]  Response to Referee 1  10.5194/acp-2017-372-ac1
+  2017  [type peer-review]  Response to Referee 2  10.5194/acp-2017-372-ac2
+  2016  [type book-chapter]  Where Did This Particle Come From? Sources of Particle Number and Mass for Human Exposure Estimates  10.1039/9781782626589-00035
+  2016  [type conference-abstract]  Constraining the Volatility Distributions and Possible Diffusion Limitations of Secondary Organic Aerosols Using Laboratory Dilution Experiments  W3029899367
+  2016  [type peer-review]  Response to Gabor Vali  10.5194/acp-2015-1013-ac2
+  2016  [type peer-review]  Responses to Referees  10.5194/amt-2016-201-ac1
+  2016  [type peer-review]  Response to Referee 2  10.5194/acp-2015-1013-ac1
+  2016  [type supplementary-materials]  Supplementary material to "Value-added by high-resolution regional simulations of climate-relevant aerosol properties"  10.5194/acp-2016-453-supplement
+  2015  [type book-chapter]  Atmospheric Chemistry  10.1016/b978-0-12-409548-9.09177-6
+  2015  [type conference-abstract]  Alteration of Heterogeneous Ice Nucleation Properties Induced by Particle Aging  W2490312045
+  2015  [no journal]  Atmospheric Ice Formation Processes and Impacts II  W2508135500
+  2015  [no journal]  Atmospheric Ice Formation Processes and Impacts III Posters  W2510391832
+  2015  [type conference-abstract]  Ice nucleating particles from biomass combustion: emission rates and the role of refractory black carbon  W2595156871
+  2015  [type conference-abstract]  Insights Into the Effects of Internal Variability, External Variability, and Active Sites on Heterogeneous Ice Nucleation  W2752763224
+  2015  [type conference-abstract]  Ice Nucleation Properties of Amospherically Aged Biomass Burning Aerosol  W3106231123
+  2015  [type supplementary-materials]  Supplementary material to "How skillfully can we simulate drivers of aerosol direct climate forcing at the regional scale?"  10.5194/acpd-15-27311-2015-supplement
+  2014  [type supplementary-materials]  Supplementary material to "Trace gas emissions from combustion of peat, crop residue, biofuels, grasses, and other fuels: configuration and FTIR component of the fourth Fire Lab at Missoula Experiment (FLAME-4)"  10.5194/acpd-14-10061-2014-supplement
+  2013  [type conference-paper]  Laboratory measurements of ice nuclei concentrations from ocean water spray  10.1063/1.4803427
+  2013  [type conference-abstract]  Measurements to Fill Knowledge Gaps on Ice Nucleating Particle Sources over Oceans  W2997532669
+  2013  [type conference-abstract]  Brown carbon in fresh and aged biomass burning emissions  W3013265700
+  2012  [type conference-abstract]  The Effects of Transpacific Transported Aerosol on Clouds in California  W2990427857
+  2012  [type conference-abstract]  Measurements of African dust aerosol properties as ice nuclei in the laboratory and atmosphere  W2994786811
+  2012  [type conference-abstract]  Ice Nuclei Emissions From Sea Spray Produced By Realistically Simulated Breaking Waves  W3015436253
+  2011  [type erratum]  Corrigendum to "Experimental study of the role of physicochemical surface processing on the IN ability of mineral dust particles" published in Atmos. Chem. Phys., 11, 11131–11144, 2011  10.5194/acp-11-11919-2011
+  2011  [type conference-abstract]  Recent Field Measurements of Ice Nuclei Concentration Relation to Aerosol Properties  W3011157353
+  2011  [type conference-abstract]  Dependence of Ice Formation in Sierra Winter Orographic Clouds on the Mixing State of Aerosols Serving as Ice Nuclei  W2989099427
+  2011  [type conference-abstract]  Probing the impact of different aerosol sources on cloud microphysics and precipitation through in-situ measurements of chemical mixing state  W2991979743
+  2011  [type conference-abstract]  Evaluation of ice nucleation properties of agricultural soils using a continuous flow diffusion chamber  W2999637507
+  2011  [type conference-abstract]  Ice nuclei measurements from the BEACHON-RoMBAS field campaign  W3022873836
+  2011  [type conference-abstract]  Determination of the sources and impacts of aerosols on clouds and orographic precipitation during CalWater  W3158272435
+  2010  [type conference-abstract]  Investigating and parameterizing physical, chemical, and thermodynamic dependencies of ice nuclei concentrations (Invited)  W3121104663
+  2010  [type conference-abstract]  Influence of particle surface modifications on the immersion freezing behavior of supercooled droplets  W3009075027
+  2010  [source type repository]  Hygroscopicity frequency distributions of secondary organic aerosols  W3013785595
+  2010  [type conference-abstract]  Chemical processing does not always impair heterogeneous ice nucleation of mineral dust particles  W3129535568
+  2009  [type conference-abstract]  Hygroscopicity of mineral dust particles: Roles of chemical mixing state and hygroscopic conversion timescale  W3013288040
+  2009  [type conference-abstract]  A Comparison of Single Particle Composition and CCN Activity during the 2007 and 2008 San Diego Wildfires  W2986563744
+  2009  [type conference-abstract]  Cloud condensation nucleation activity of secondary organic aerosols formed from the oxidation of alkenes and diiodomethane  W3023018035
+  2009  [type conference-abstract]  Studies of biological aerosols as ice nuclei: Existing constraints and new measurements (Invited)  W3046243868
+  2008  [type dissertation]  Heterogeneous chemistry of atmospheric mineral dust particles and their resulting cloud-nucleation properties  W1590095648
+  2008  [type conference-abstract]  Single Particle Composition and Cloud Condensation Nuclei (CCN) Activity during the San Diego Wildfires 2007  W3021050991
+  2005  [type conference-abstract]  Providing Size-Resolved Mixing State Inputs to Improve Aerosol Optics Models: Comparison of ACE-Asia Aerosol Chemical Measurements for Different Source Regions With Simultaneous Optical Measurements  W3128013954
+  2003  [type conference-abstract]  Ozone Decomposition Kinetics on Aluminum Oxide: Effects of Relative Humidity, Ozone Partial Pressure and the State of Film Oxidation  W3044761437
