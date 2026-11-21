@@ -334,12 +334,36 @@ def clean_title(t):
     return "".join(p if p.startswith("<") else FORMULA.sub(fix_formula, p) for p in pieces)
 
 
+# Fix OpenAlex capitalisation and punctuation of journal names
+JOURNAL_FIX = {
+    "atmospheric chemistry and physics": "Atmospheric Chemistry and Physics",
+    "atmospheric measurement techniques": "Atmospheric Measurement Techniques",
+    "environmental science processes & impacts": "Environmental Science: Processes &amp; Impacts",
+    "environmental science atmospheres": "Environmental Science: Atmospheres",
+    "journal of geophysical research atmospheres": "Journal of Geophysical Research: Atmospheres",
+}
+# Greek capitals that OpenAlex sometimes returns in place of Latin letters
+CONFUSABLES = str.maketrans("ΑΒΕΖΗΙΚΜΝΟΡΤΥΧ", "ABEZHIKMNOPTYX")
+
+
+def journal_name(raw):
+    return JOURNAL_FIX.get((raw or "").strip().lower(), html.escape(raw or ""))
+
+
+def tidy_name(name):
+    """Latin letters for Greek look-alikes; title case for names given in all capitals."""
+    name = (name or "").translate(CONFUSABLES)
+    if name.isupper():
+        name = " ".join(p if len(p) <= 2 and p.endswith(".") else p.capitalize() for p in name.split())
+    return name
+
+
 def format_authors(w, members):
     names = []
     me_index = None
     for i, a in enumerate(w.get("authorships") or []):
         author = a.get("author") or {}
-        name = html.escape(author.get("display_name") or a.get("raw_author_name") or "")
+        name = html.escape(tidy_name(author.get("display_name") or a.get("raw_author_name") or ""))
         if norm_id(author.get("id")) == AUTHOR_ID:
             name, me_index = f"<strong>{MY_NAME}</strong>", i
         elif name_key(author.get("display_name")) in members:
@@ -379,7 +403,7 @@ def format_chapter(w, members):
 
 
 def format_entry(w, members):
-    src = html.escape(source_of(w).get("display_name") or "")
+    src = journal_name(source_of(w).get("display_name"))
     b = w.get("biblio") or {}
     detail = ""
     if b.get("volume"):
