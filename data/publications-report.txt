@@ -1,5 +1,5 @@
 Report from the last change to the list (21 November 2026).
-148 works from OpenAlex; 78 kept; 70 dropped.
+148 works from OpenAlex; 75 kept; 73 dropped.
 
 Dropped (add a DOI to publications-include.txt to restore one):
   2026  [type peer-review]  Author response for "Evolution of the Photosensitized Production of Singlet Oxygen by Aqueous Extracts of Biomass-Burning Aerosol"  10.1039/d6em00131a/v3/response1
@@ -27,25 +27,28 @@ Dropped (add a DOI to publications-include.txt to restore one):
   2018  [type supplementary-materials]  Supplementary material to "A comprehensive characterization of ice nucleation by three different types of cellulose particles immersed in water: lessons learned and future research directions"  10.5194/acp-2018-933-supplement
   2018  [type peer-review]  Response to Gabor Vali  10.5194/amt-2018-134-ac4
   2018  [type peer-review]  Response to Referee 2 Benjamin Murray  10.5194/amt-2018-134-ac3
+  2017  [on exclude list]  The impact of resolution on meteorological, chemical and aerosol properties in regional simulations with WRF-Chem  10.5194/acp-17-1511-2017
+  2017  [on exclude list]  Modeling the contributions of global air temperature, synoptic-scale phenomena and soil moisture to near-surface static energy variability using artificial neural networks  10.5194/acp-17-14457-2017
   2017  [type conference-abstract]  Heterogeneous kinetics of N 2 O 5 reactive uptake and chlorine activation in authentic biomass burning aerosol  W2996794838
   2017  [type conference-abstract]  High Spatial Resolution of Atmospheric Particle Mixing State and Its Links to Particle Evolution in a Metropolitan Area  W3015283418
   2017  [type conference-abstract]  Comprehensive Examination of Bottom Ash, Soil Dust, and Direct Emissions and Aging of Laboratory Biomass Burning as Potential Sources of Ice Nucleating Particles  W3046790143
   2017  [type peer-review]  Response to Referee 1  10.5194/acp-2017-372-ac1
   2017  [type peer-review]  Response to Referee 2  10.5194/acp-2017-372-ac2
+  2016  [on exclude list]  Evaluating the skill of high-resolution WRF-Chem simulations in describing drivers of aerosol direct climate forcing on the regional scale  10.5194/acp-16-397-2016
   2016  [type book-chapter]  Where Did This Particle Come From? Sources of Particle Number and Mass for Human Exposure Estimates  10.1039/9781782626589-00035
   2016  [type conference-abstract]  Constraining the Volatility Distributions and Possible Diffusion Limitations of Secondary Organic Aerosols Using Laboratory Dilution Experiments  W3029899367
   2016  [type peer-review]  Response to Gabor Vali  10.5194/acp-2015-1013-ac2
   2016  [type peer-review]  Responses to Referees  10.5194/amt-2016-201-ac1
   2016  [type peer-review]  Response to Referee 2  10.5194/acp-2015-1013-ac1
-  2016  [type supplementary-materials]  Supplementary material to "Value-added by high-resolution regional simulations of climate-relevant aerosol properties"  10.5194/acp-2016-453-supplement
-  2015  [type book-chapter]  Atmospheric Chemistry  10.1016/b978-0-12-409548-9.09177-6
+  2016  [other Ryan C. Sullivan (co-author S. C. Pryor)]  Supplementary material to "Value-added by high-resolution regional simulations of climate-relevant aerosol properties"  10.5194/acp-2016-453-supplement
+  2015  [other Ryan C. Sullivan (co-author S. C. Pryor)]  Atmospheric Chemistry  10.1016/b978-0-12-409548-9.09177-6
   2015  [type conference-abstract]  Alteration of Heterogeneous Ice Nucleation Properties Induced by Particle Aging  W2490312045
   2015  [no journal]  Atmospheric Ice Formation Processes and Impacts II  W2508135500
   2015  [no journal]  Atmospheric Ice Formation Processes and Impacts III Posters  W2510391832
   2015  [type conference-abstract]  Ice nucleating particles from biomass combustion: emission rates and the role of refractory black carbon  W2595156871
   2015  [type conference-abstract]  Insights Into the Effects of Internal Variability, External Variability, and Active Sites on Heterogeneous Ice Nucleation  W2752763224
   2015  [type conference-abstract]  Ice Nucleation Properties of Amospherically Aged Biomass Burning Aerosol  W3106231123
-  2015  [type supplementary-materials]  Supplementary material to "How skillfully can we simulate drivers of aerosol direct climate forcing at the regional scale?"  10.5194/acpd-15-27311-2015-supplement
+  2015  [other Ryan C. Sullivan (co-author S. C. Pryor)]  Supplementary material to "How skillfully can we simulate drivers of aerosol direct climate forcing at the regional scale?"  10.5194/acpd-15-27311-2015-supplement
   2014  [type supplementary-materials]  Supplementary material to "Trace gas emissions from combustion of peat, crop residue, biofuels, grasses, and other fuels: configuration and FTIR component of the fourth Fire Lab at Missoula Experiment (FLAME-4)"  10.5194/acpd-14-10061-2014-supplement
   2013  [type conference-paper]  Laboratory measurements of ice nuclei concentrations from ocean water spray  10.1063/1.4803427
   2013  [type conference-abstract]  Measurements to Fill Knowledge Gaps on Ice Nucleating Particle Sources over Oceans  W2997532669
