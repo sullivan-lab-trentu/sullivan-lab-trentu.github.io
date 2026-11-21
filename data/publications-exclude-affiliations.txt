@@ -1,0 +1,7 @@
+# Institutions of a different Ryan C. Sullivan (OpenAlex A5036992484,
+# ORCID 0000-0002-3500-1842), where this Ryan has never worked. Any paper that
+# lists Ryan at one of these is dropped. One per line; matched as a
+# case-insensitive part of the institution name. (Ryan, 20 Nov 2026)
+Argonne National Laboratory
+Cornell University
+Indiana University

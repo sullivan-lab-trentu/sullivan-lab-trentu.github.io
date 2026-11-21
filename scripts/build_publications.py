@@ -12,6 +12,8 @@ What it does
   3. Applies two hand-edited lists in data/:
        publications-exclude.txt  DOIs or OpenAlex IDs to remove
        publications-include.txt  DOIs to add (papers OpenAlex misses or drops)
+       publications-exclude-affiliations.txt  institutions of a different
+                                 Ryan C. Sullivan; papers listing Ryan there go
        publications-exclude-coauthors.txt  co-authors marking papers by a
                                  different Ryan C. Sullivan
   4. Bolds Ryan Sullivan and underlines group members (data/group-members.txt).
@@ -181,15 +183,34 @@ def better(a, b):
     return a if score(a) >= score(b) else b
 
 
+def other_ryan_affiliation(w, places):
+    """The institution, if this paper lists Ryan at one of the other Ryan's."""
+    for a in w.get("authorships") or []:
+        if norm_id((a.get("author") or {}).get("id")) != AUTHOR_ID:
+            continue
+        names = [i.get("display_name") or "" for i in a.get("institutions") or []]
+        names += a.get("raw_affiliation_strings") or []
+        for n in names:
+            if any(p in fold(n) for p in places):
+                return n
+    return None
+
+
 def select(works, exclude, include_works):
     excl = {norm_doi(x) for x in exclude} | {norm_id(x) for x in exclude}
     # Co-authors who only appear on papers by a different Ryan C. Sullivan,
     # whose works OpenAlex has merged into this author record.
     other_ryan = member_keys("publications-exclude-coauthors.txt")
+    # Institutions of the other Ryan C. Sullivan, where this Ryan never worked.
+    other_places = [fold(x) for x in read_list("publications-exclude-affiliations.txt")]
     kept, dropped = {}, []
     for w in works:
         if norm_doi(w.get("doi")) in excl or norm_id(w.get("id")) in excl:
             dropped.append((w, "on exclude list"))
+            continue
+        place = other_ryan_affiliation(w, other_places)
+        if place:
+            dropped.append((w, "other Ryan C. Sullivan (listed at " + place + ")"))
             continue
         hit = next((a["author"].get("display_name") for a in (w.get("authorships") or [])
                     if name_key((a.get("author") or {}).get("display_name")) in other_ryan), None)

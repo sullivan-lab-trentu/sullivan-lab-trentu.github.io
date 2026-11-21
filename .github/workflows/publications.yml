@@ -13,6 +13,7 @@ on:
       - "data/publications-exclude.txt"
       - "data/publications-include.txt"
       - "data/publications-exclude-coauthors.txt"
+      - "data/publications-exclude-affiliations.txt"
 
 permissions:
   contents: write
