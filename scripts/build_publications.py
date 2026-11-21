@@ -17,6 +17,9 @@ What it does
        publications-exclude-coauthors.txt  co-authors marking papers by a
                                  different Ryan C. Sullivan
   4. Bolds Ryan Sullivan and underlines group members (data/group-members.txt).
+     Years are the journal issue year from Crossref (the year papers are cited
+     by), falling back to OpenAlex's first-online year when Crossref has none.
+     Book chapters are listed in their own section.
   5. Replaces the text between the PUBS markers in publications.html, but only
      if the list itself changed, so the page is not rewritten every week.
 
@@ -53,6 +56,8 @@ DATA = os.path.join(ROOT, "data")
 START, END = "<!-- PUBS:START -->", "<!-- PUBS:END -->"
 
 KEEP_TYPES = {"article", "review", "letter"}
+CHAPTER_TYPES = {"book-chapter"}     # listed in their own section
+MY_NAME = "Ryan C. Sullivan"         # how Ryan's own name is shown
 DROP_SOURCE_TYPES = {"repository", "conference", "ebook platform", "book series"}
 # Source names that mark preprints, discussion papers, or meeting abstracts.
 # Matched as whole words. "Proceedings" is deliberately absent (PNAS).
@@ -146,6 +151,42 @@ def fetch_author_works():
     return works
 
 
+def crossref_year(doi):
+    """Journal issue year from Crossref, or None."""
+    try:
+        req = urllib.request.Request("https://api.crossref.org/works/" + urllib.parse.quote(doi, safe="/"),
+                                     headers={"User-Agent": f"publication-list ({CONTACT})"})
+        with urllib.request.urlopen(req, timeout=30) as r:
+            m = json.load(r).get("message", {})
+    except Exception:
+        return None
+    for path in (("journal-issue", "published-print"), ("published-print",),
+                 ("issued",), ("published",)):
+        d = m
+        for k in path:
+            d = d.get(k) if isinstance(d, dict) else None
+        try:
+            return int(d["date-parts"][0][0])
+        except (TypeError, KeyError, IndexError, ValueError):
+            continue
+    return None
+
+
+def set_years(pubs):
+    """Replace OpenAlex's first-online year with the journal issue year."""
+    misses = 0
+    for w in pubs:
+        doi = norm_doi(w.get("doi"))
+        y = crossref_year(doi) if doi else None
+        if y:
+            w["publication_year"] = y
+        else:
+            misses += 1
+        time.sleep(0.2)
+    if misses:
+        print(f"Crossref gave no year for {misses} papers; OpenAlex years used.")
+
+
 def fetch_doi(doi):
     return get_json("https://api.openalex.org/works/doi:" + urllib.parse.quote(doi, safe="/") +
                     "?select=" + FIELDS)
@@ -160,14 +201,14 @@ def source_of(w):
 def drop_reason(w):
     if w.get("is_retracted"):
         return "retracted"
-    if (w.get("type") or "") not in KEEP_TYPES:
+    if (w.get("type") or "") not in KEEP_TYPES | CHAPTER_TYPES:
         return "type " + str(w.get("type"))
     src = source_of(w)
-    if not src.get("display_name"):
+    if not src.get("display_name") and w.get("type") not in CHAPTER_TYPES:
         return "no journal"
-    if (src.get("type") or "") in DROP_SOURCE_TYPES:
+    if (src.get("type") or "") in DROP_SOURCE_TYPES and w.get("type") not in CHAPTER_TYPES:
         return "source type " + str(src.get("type"))
-    if DROP_SOURCE_RE.search(fold(src["display_name"])):
+    if DROP_SOURCE_RE.search(fold(src.get("display_name") or "")):
         return "source " + src["display_name"]
     if DROP_TITLE.match(w.get("display_name") or ""):
         return "correction or reply"
@@ -257,10 +298,30 @@ def name_key(display_name):
     return (fold(parts[-1]).replace(" ", ""), fold(parts[0])[:1])
 
 
+ELEMENTS = set("""H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co
+Ni Cu Zn Ga Ge As Se Br Kr Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe Cs Ba La
+Ce Pr Nd Sm Eu Gd Tb Dy Ho Er Tm Yb Lu Hf Ta W Re Os Ir Pt Au Hg Tl Pb Bi Po Rn U""".split())
+FORMULA = re.compile(r"(?<![A-Za-z0-9-])((?:[A-Z][a-z]?(?: ?\d{1,2})?)(?:(?: ?[A-Z][a-z]?)(?: ?\d{1,2})?)*)(?![a-z0-9])")
+
+
+def fix_formula(m):
+    """'N 2 O 5' -> N<sub>2</sub>O<sub>5</sub>, only for real element strings with digits."""
+    text = m.group(1)
+    parts = re.findall(r"([A-Z][a-z]?)( ?)(\d{0,2})", text)
+    if not any(n for _, _, n in parts) or not all(e in ELEMENTS for e, _, _ in parts):
+        return text
+    if len(parts) == 1 and parts[0][1] == "":      # e.g. 'Fe2' written normally: leave
+        pass
+    return "".join(e + (f"<sub>{n}</sub>" if n else "") for e, _, n in parts)
+
+
 def clean_title(t):
     t = html.escape(t or "", quote=False)
     # OpenAlex titles sometimes carry sub/superscript and italic tags
-    return re.sub(r"&lt;(/?)(sub|sup|i|em)&gt;", r"<\1\2>", t, flags=re.I).rstrip(".")
+    t = re.sub(r"&lt;(/?)(sub|sup|i|em)&gt;", r"<\1\2>", t, flags=re.I).rstrip(".")
+    # Split the text around existing tags so formulas are fixed only in plain text
+    pieces = re.split(r"(<[^>]+>)", t)
+    return "".join(p if p.startswith("<") else FORMULA.sub(fix_formula, p) for p in pieces)
 
 
 def format_authors(w, members):
@@ -270,7 +331,7 @@ def format_authors(w, members):
         author = a.get("author") or {}
         name = html.escape(author.get("display_name") or a.get("raw_author_name") or "")
         if norm_id(author.get("id")) == AUTHOR_ID:
-            name, me_index = f"<strong>{name}</strong>", i
+            name, me_index = f"<strong>{MY_NAME}</strong>", i
         elif name_key(author.get("display_name")) in members:
             name = f"<u>{name}</u>"
         names.append(name)
@@ -283,6 +344,21 @@ def format_authors(w, members):
         return ", ".join(names[:-1]) + ", and " + names[-1] if len(names) > 2 \
             else " and ".join(names)
     return names[0] if names else ""
+
+
+def title_with_stop(w):
+    t = clean_title(w.get("display_name"))
+    return t if t.endswith(("?", "!")) else t + "."
+
+
+def format_chapter(w, members):
+    book = html.escape(source_of(w).get("display_name") or "")
+    doi = norm_doi(w.get("doi"))
+    link = (f' <a href="https://doi.org/{html.escape(doi)}">doi:{html.escape(doi)}</a>'
+            if doi else "")
+    where = f" In <em>{book}</em>," if book else ""
+    return (f'<li>{format_authors(w, members)}. {title_with_stop(w)}'
+            f'{where} {w.get("publication_year")}.{link}</li>')
 
 
 def format_entry(w, members):
@@ -302,11 +378,13 @@ def format_entry(w, members):
     doi = norm_doi(w.get("doi"))
     link = (f' <a href="https://doi.org/{html.escape(doi)}">doi:{html.escape(doi)}</a>'
             if doi else "")
-    return (f'<li>{format_authors(w, members)}. {clean_title(w.get("display_name"))}. '
+    return (f'<li>{format_authors(w, members)}. {title_with_stop(w)} '
             f'<em>{src}</em>{", " + tail if tail else ""}, {w.get("publication_year")}.{link}</li>')
 
 
 def build_list(pubs, members):
+    chapters = [w for w in pubs if w.get("type") in CHAPTER_TYPES]
+    pubs = [w for w in pubs if w.get("type") not in CHAPTER_TYPES]
     out, year = [], None
     for w in pubs:
         y = w.get("publication_year")
@@ -318,6 +396,11 @@ def build_list(pubs, members):
             year = y
         out.append(format_entry(w, members))
     if year is not None:
+        out.append("</ol>")
+    if chapters:
+        out.append('<h3 class="pub-year">Book chapters</h3>')
+        out.append('<ol class="pubs">')
+        out.extend(format_chapter(w, members) for w in chapters)
         out.append("</ol>")
     return "\n".join(out)
 
@@ -342,6 +425,9 @@ def main():
         else:
             print(f"Include list: OpenAlex has no record for {doi}", file=sys.stderr)
     pubs, dropped = select(works, read_list("publications-exclude.txt"), include_works)
+    set_years(pubs)
+    pubs.sort(key=lambda w: (w.get("publication_year") or 0, w.get("publication_date") or ""),
+              reverse=True)
 
     old_count = current.count("<li>")
     if old_count and len(pubs) < SHRINK_LIMIT * old_count:
@@ -357,7 +443,8 @@ def main():
         return
 
     stamp = dt.date.today().strftime("%-d %B %Y")
-    new = (f'\n<p class="pub-updated">{len(pubs)} papers. List last changed {stamp}.</p>\n'
+    n_papers = sum(1 for w in pubs if w.get("type") not in CHAPTER_TYPES)
+    new = (f'\n<p class="pub-updated">{n_papers} papers. List last changed {stamp}.</p>\n'
            f"{body}\n")
     with open(PAGE, "w", encoding="utf-8") as f:
         f.write(before + START + new + END + after)

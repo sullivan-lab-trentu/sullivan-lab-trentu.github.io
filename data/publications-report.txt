@@ -1,5 +1,5 @@
-Report from the last change to the list (21 November 2026).
-148 works from OpenAlex; 75 kept; 73 dropped.
+Report from the last change to the list (20 November 2026).
+148 works from OpenAlex; 77 kept; 71 dropped.
 
 Dropped (add a DOI to publications-include.txt to restore one):
   2026  [type peer-review]  Author response for "Evolution of the Photosensitized Production of Singlet Oxygen by Aqueous Extracts of Biomass-Burning Aerosol"  10.1039/d6em00131a/v3/response1
@@ -19,7 +19,6 @@ Dropped (add a DOI to publications-include.txt to restore one):
   2019  [type conference-abstract]  Probing the evolution of the phase separations, acidity, and morphology of optically tweezed complex particles  W3021368174
   2019  [type conference-abstract]  The atmospheric evolution of the ice nucleation properties of biomass burning aerosol  W3043621592
   2019  [type conference-abstract]  The Evolution of the Ice Nucleating Properties of Biomass-Burning Aerosol During Simulated Atmospheric Chemical Aging  W3180806930
-  2018  [type book-chapter]  Characterization of Individual Aerosol Particles  10.1016/b978-0-12-813641-6.00012-1
   2018  [type supplementary-materials]  Supplementary material to "The Fifth International Workshop on Ice Nucleation phase 2 (FIN-02): Laboratory intercomparison of ice nucleation measurements"  10.5194/amt-2018-191-supplement
   2018  [type conference-abstract]  Using an Advanced Single Particle Mass Spectrometer on a Mobile Platform to Study Spatial Variability of Population Exposure to Traffic and Cooking Particulate Matter in Pittsburgh PA  W3022166438
   2018  [type peer-review]  Updated reference  10.5194/amt-2018-134-ac1
@@ -35,13 +34,12 @@ Dropped (add a DOI to publications-include.txt to restore one):
   2017  [type peer-review]  Response to Referee 1  10.5194/acp-2017-372-ac1
   2017  [type peer-review]  Response to Referee 2  10.5194/acp-2017-372-ac2
   2016  [on exclude list]  Evaluating the skill of high-resolution WRF-Chem simulations in describing drivers of aerosol direct climate forcing on the regional scale  10.5194/acp-16-397-2016
-  2016  [type book-chapter]  Where Did This Particle Come From? Sources of Particle Number and Mass for Human Exposure Estimates  10.1039/9781782626589-00035
   2016  [type conference-abstract]  Constraining the Volatility Distributions and Possible Diffusion Limitations of Secondary Organic Aerosols Using Laboratory Dilution Experiments  W3029899367
   2016  [type peer-review]  Response to Gabor Vali  10.5194/acp-2015-1013-ac2
   2016  [type peer-review]  Responses to Referees  10.5194/amt-2016-201-ac1
   2016  [type peer-review]  Response to Referee 2  10.5194/acp-2015-1013-ac1
-  2016  [other Ryan C. Sullivan (co-author S. C. Pryor)]  Supplementary material to "Value-added by high-resolution regional simulations of climate-relevant aerosol properties"  10.5194/acp-2016-453-supplement
-  2015  [other Ryan C. Sullivan (co-author S. C. Pryor)]  Atmospheric Chemistry  10.1016/b978-0-12-409548-9.09177-6
+  2016  [other Ryan C. Sullivan (listed at Cornell University)]  Supplementary material to "Value-added by high-resolution regional simulations of climate-relevant aerosol properties"  10.5194/acp-2016-453-supplement
+  2015  [other Ryan C. Sullivan (listed at Cornell University)]  Atmospheric Chemistry  10.1016/b978-0-12-409548-9.09177-6
   2015  [type conference-abstract]  Alteration of Heterogeneous Ice Nucleation Properties Induced by Particle Aging  W2490312045
   2015  [no journal]  Atmospheric Ice Formation Processes and Impacts II  W2508135500
   2015  [no journal]  Atmospheric Ice Formation Processes and Impacts III Posters  W2510391832
