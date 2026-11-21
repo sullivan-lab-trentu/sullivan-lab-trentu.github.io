@@ -11,7 +11,7 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
 body {
   margin: 0;
   font: 18px/1.65 "Open Sans", Arial, sans-serif;
@@ -31,6 +31,7 @@ a:hover { color: var(--green); }
 h1, h2, h3 { line-height: 1.25; color: var(--heading); }
 h2 { font-size: 1.7rem; margin: 0 0 18px; }
 h3 { font-size: 1.15rem; margin: 0 0 8px; }
+h4 { font-size: 1rem; margin: 18px 0 6px; color: var(--heading); }
 p { margin: 0 0 14px; }
 .small { font-size: 0.9rem; color: var(--muted); }
 
@@ -47,7 +48,7 @@ p { margin: 0 0 14px; }
 .brand span { font-weight: 400; color: var(--green); margin-left: 6px; }
 nav a {
   margin-left: 20px; text-decoration: none; color: var(--ink);
-  font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em;
+  font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap;
 }
 nav a:first-child { margin-left: 0; }
 nav a:hover { color: var(--blue); }
@@ -83,7 +84,9 @@ nav a:hover { color: var(--blue); }
 .theme p { margin: 0; }
 .lead-out { font-weight: 600; color: var(--heading); }
 
-.approaches li { margin-bottom: 8px; }
+.approaches { columns: 2; column-gap: 40px; }
+.approaches li { margin-bottom: 8px; break-inside: avoid; }
+.areas li { margin-bottom: 6px; }
 
 /* Trent section */
 .two-col { display: grid; grid-template-columns: 1fr 1.2fr; gap: 32px; align-items: center; }
@@ -92,7 +95,8 @@ figcaption { font-size: 0.85rem; color: var(--muted); margin-top: 8px; }
 
 .wide-photo img { width: 100%; max-height: 520px; object-fit: cover; }
 .wide-photo figcaption { margin-top: 8px; }
-.wide-photo video { width: 100%; max-height: 520px; aspect-ratio: 16 / 9; object-fit: cover; display: block; background: #1f2a26; }
+.campus-loop { margin-top: 12px; margin-bottom: 12px; }
+.campus-loop video { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block; border-radius: 4px; background: #1f2a26; }
 
 /* Read more links */
 .read-more-title { margin-top: 30px; }
@@ -101,15 +105,20 @@ figcaption { font-size: 0.85rem; color: var(--muted); margin-top: 8px; }
 .read-more span { color: var(--muted); font-size: 0.9rem; }
 
 /* Photo pair and videos */
-.pair { margin: 34px 0 0; }
-.pair-row { display: flex; flex-wrap: wrap; gap: 16px; }
-.pair-img { flex: 1 1 300px; aspect-ratio: 3 / 2; overflow: hidden; border-radius: 4px; }
+.pair { margin: 34px 0 0; display: flex; flex-wrap: wrap; gap: 16px; }
+.pair figure { flex: 1 1 300px; }
+.pair-img { aspect-ratio: 3 / 2; overflow: hidden; border-radius: 4px; }
 .pair-img img { width: 100%; height: 100%; object-fit: cover; }
 .pair-img.wqc img { transform: scale(1.22); transform-origin: 50% 40%; }
 .videos-title { margin-top: 34px; }
 .videos { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
 .video { aspect-ratio: 16 / 9; }
 .video iframe { width: 100%; height: 100%; border: 0; border-radius: 4px; }
+
+/* People */
+.person { background: var(--tint); border-left: 4px solid var(--heading); padding: 16px 22px; border-radius: 4px; margin-bottom: 14px; }
+.person .role { margin-bottom: 8px; }
+.person-links { margin: 0; font-weight: 600; }
 
 /* Positions */
 .position {
@@ -134,11 +143,16 @@ figcaption { font-size: 0.85rem; color: var(--muted); margin-top: 8px; }
   .hero img { height: 420px; }
   .hero h1 { font-size: 1.85rem; }
   .themes, .two-col, .videos { grid-template-columns: 1fr; }
+  .approaches { columns: 1; }
+  html { scroll-padding-top: 0; }
+  .site-header { position: static; }
+  .header-inner { padding-top: 10px; padding-bottom: 8px; gap: 4px 16px; }
+  nav a { margin-right: 12px; font-size: 0.74rem; letter-spacing: 0.04em; line-height: 2; }
   .section { padding: 20px 0; }
 }
 
 /* Publications */
-.pub-year { margin: 30px 0 10px; color: var(--blue); }
+.pub-year { margin: 30px 0 10px; color: var(--heading); }
 .pubs { padding-left: 0; list-style: none; margin: 0; }
 .pubs li { margin-bottom: 14px; padding-left: 14px; border-left: 3px solid var(--line); }
 .pubs u { text-decoration-color: var(--blue); text-underline-offset: 2px; }
