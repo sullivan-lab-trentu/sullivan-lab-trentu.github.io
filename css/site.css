@@ -105,20 +105,20 @@ nav a.join { box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.85); }
 /* Location map: Google's map shown read-only; a click opens Google Maps.
    The pin is our own, placed by its pixel offset from the map centre at this zoom. */
 .map { grid-column: 1 / -1; }
-.map-link { display: block; position: relative; aspect-ratio: 10 / 9; border-radius: 4px; overflow: hidden; border: 1px solid var(--line); }
+.map-link { display: block; position: relative; aspect-ratio: 5 / 4; border-radius: 4px; overflow: hidden; border: 1px solid var(--line); }
 .map-link iframe { position: absolute; left: 0; top: -50px; width: 100%; height: calc(100% + 50px); border: 0; pointer-events: none; }
 /* Wide map drawn 10% larger and scaled to 90%, a zoom between Google's fixed levels */
 .map-link .map-wide { top: -45px; width: 111.111%; height: calc(111.111% + 50px); transform: scale(0.9); transform-origin: 0 0; }
 .map-narrow { display: none; }
-.map-pin { position: absolute; left: calc(50% - 118px); top: calc(50% - 42.4px); width: 0; height: 0; }
+.map-pin { position: absolute; left: calc(50% - 93.4px); top: calc(50% - 21.8px); width: 0; height: 0; }
 .map-dot { position: absolute; left: -18px; top: -46px; width: 36px; height: 36px; border-radius: 50%; background: var(--green) url("https://www.trentu.ca/themes/custom/trent/dist/images/crest.png") center / 25px no-repeat; border: 2px solid var(--white); box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5); }
 .map-dot::after { content: ""; position: absolute; left: 9px; top: 32px; border-left: 7px solid transparent; border-right: 7px solid transparent; border-top: 12px solid var(--green); }
 .map-label { position: absolute; left: 24px; top: -42px; white-space: nowrap; font: 700 15px/1.4 Montserrat, Arial, sans-serif; color: var(--green); background: rgba(255, 255, 255, 0.9); padding: 2px 7px; border-radius: 4px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25); }
 .map-badge { position: absolute; left: 12px; top: 12px; display: flex; align-items: center; gap: 8px; padding: 6px 10px 6px 8px; border-radius: 6px; background: rgba(255, 255, 255, 0.93); box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25); font: 700 14px/1 Montserrat, Arial, sans-serif; color: var(--ink); }
 .map-badge img { width: 34px; height: 17px; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15); }
 /* Covers Google's label on the lake with its correct name */
-.map-lake { position: absolute; left: calc(50% - 73px); top: calc(50% + 132px); transform: translate(-50%, -50%); padding: 6px 10px; border-radius: 10px; background: #9bd2e8; box-shadow: 0 0 5px 3px #9bd2e8; font: italic 600 14px/1.15 "Nunito Sans", Arial, sans-serif; letter-spacing: 0.03em; color: #3d6f96; text-align: center; }
-.map-usa { position: absolute; left: calc(50% + 120px); top: calc(50% + 225px); font: 700 14px Montserrat, Arial, sans-serif; letter-spacing: 0.3em; color: rgba(31, 42, 38, 0.6); text-shadow: 0 0 3px #fff, 0 0 3px #fff; }
+.map-lake { position: absolute; left: calc(50% - 48.4px); top: calc(50% + 152.6px); transform: translate(-50%, -50%); padding: 6px 10px; border-radius: 10px; background: #9bd2e8; box-shadow: 0 0 5px 3px #9bd2e8; font: italic 600 14px/1.15 "Nunito Sans", Arial, sans-serif; letter-spacing: 0.03em; color: #3d6f96; text-align: center; }
+.map-usa { position: absolute; left: calc(50% + 144.6px); top: calc(50% + 245.6px); font: 700 14px Montserrat, Arial, sans-serif; letter-spacing: 0.3em; color: rgba(31, 42, 38, 0.6); text-shadow: 0 0 3px #fff, 0 0 3px #fff; }
 figure { margin: 0; }
 figcaption { font-size: 0.85rem; color: var(--muted); margin-top: 8px; }
 
