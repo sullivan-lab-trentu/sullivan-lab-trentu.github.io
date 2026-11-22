@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Nunito+Sans:wght@400;600;700&family=Oswald:wght@500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/site.css?v=14">
+<link rel="stylesheet" href="css/site.css?v=15">
 <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://sullivan-lab-trentu.github.io/">
@@ -260,6 +260,20 @@
   </div>
 </footer>
 
+<script>
+/* Scales the map so it shows the same area at any width (design widths: 776 px wide map, 335 px phone map). */
+(function () {
+  var m = document.querySelector('.map-link');
+  if (!m) return;
+  var narrow = m.querySelector('.map-narrow');
+  function fit() {
+    var phone = narrow && getComputedStyle(narrow).display !== 'none';
+    m.style.setProperty('--k', (m.clientWidth / (phone ? 335 : 776)).toFixed(4));
+  }
+  fit();
+  window.addEventListener('resize', fit);
+})();
+</script>
 <script>
 /* Highlights the menu link for the section on screen. */
 (function () {

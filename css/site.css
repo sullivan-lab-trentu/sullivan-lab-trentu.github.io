@@ -107,18 +107,20 @@ nav a.join { box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.85); }
 .map { grid-column: 1 / -1; }
 .map-link { display: block; position: relative; aspect-ratio: 5 / 4; border-radius: 4px; overflow: hidden; border: 1px solid var(--line); }
 .map-link iframe { position: absolute; left: 0; top: -50px; width: 100%; height: calc(100% + 50px); border: 0; pointer-events: none; }
-/* Wide map drawn 10% larger and scaled to 90%, a zoom between Google's fixed levels */
-.map-link .map-wide { top: -45px; width: 111.111%; height: calc(111.111% + 50px); transform: scale(0.9); transform-origin: 0 0; }
+/* The iframes keep a fixed size and are scaled by --k (map width / design width, set by a script),
+   so the map shows the same area at any window width. The wide map's extra 0.9 sits between
+   Google's fixed zoom levels. */
+.map-link .map-wide { top: calc(-45px * var(--k, 1)); width: 862.2px; height: 740px; transform: scale(calc(0.9 * var(--k, 1))); transform-origin: 0 0; }
 .map-narrow { display: none; }
-.map-pin { position: absolute; left: calc(50% - 93.4px); top: calc(50% - 21.8px); width: 0; height: 0; }
+.map-pin { position: absolute; left: calc(50% - 93.4px * var(--k, 1)); top: calc(50% - 21.8px * var(--k, 1)); width: 0; height: 0; }
 .map-dot { position: absolute; left: -18px; top: -46px; width: 36px; height: 36px; border-radius: 50%; background: var(--green) url("https://www.trentu.ca/themes/custom/trent/dist/images/crest.png") center / 25px no-repeat; border: 2px solid var(--white); box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5); }
 .map-dot::after { content: ""; position: absolute; left: 9px; top: 32px; border-left: 7px solid transparent; border-right: 7px solid transparent; border-top: 12px solid var(--green); }
 .map-label { position: absolute; left: 24px; top: -42px; white-space: nowrap; font: 700 15px/1.4 Montserrat, Arial, sans-serif; color: var(--green); background: rgba(255, 255, 255, 0.9); padding: 2px 7px; border-radius: 4px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25); }
 .map-badge { position: absolute; left: 12px; top: 12px; display: flex; align-items: center; gap: 8px; padding: 6px 10px 6px 8px; border-radius: 6px; background: rgba(255, 255, 255, 0.93); box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25); font: 700 14px/1 Montserrat, Arial, sans-serif; color: var(--ink); }
 .map-badge img { width: 34px; height: 17px; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15); }
 /* Covers Google's label on the lake with its correct name */
-.map-lake { position: absolute; left: calc(50% - 48.4px); top: calc(50% + 152.6px); transform: translate(-50%, -50%); padding: 6px 10px; border-radius: 10px; background: #9bd2e8; box-shadow: 0 0 5px 3px #9bd2e8; font: italic 600 14px/1.15 "Nunito Sans", Arial, sans-serif; letter-spacing: 0.03em; color: #3d6f96; text-align: center; }
-.map-usa { position: absolute; left: calc(50% + 144.6px); top: calc(50% + 245.6px); font: 700 14px Montserrat, Arial, sans-serif; letter-spacing: 0.3em; color: rgba(31, 42, 38, 0.6); text-shadow: 0 0 3px #fff, 0 0 3px #fff; }
+.map-lake { position: absolute; left: calc(50% - 48.4px * var(--k, 1)); top: calc(50% + 152.6px * var(--k, 1)); transform: translate(-50%, -50%); padding: 6px 10px; border-radius: 10px; background: #9bd2e8; box-shadow: 0 0 5px 3px #9bd2e8; font: italic 600 14px/1.15 "Nunito Sans", Arial, sans-serif; letter-spacing: 0.03em; color: #3d6f96; text-align: center; }
+.map-usa { position: absolute; left: calc(50% + 144.6px * var(--k, 1)); top: calc(50% + 245.6px * var(--k, 1)); font: 700 14px Montserrat, Arial, sans-serif; letter-spacing: 0.3em; color: rgba(31, 42, 38, 0.6); text-shadow: 0 0 3px #fff, 0 0 3px #fff; }
 figure { margin: 0; }
 figcaption { font-size: 0.85rem; color: var(--muted); margin-top: 8px; }
 
@@ -185,17 +187,23 @@ figcaption { font-size: 0.85rem; color: var(--muted); margin-top: 8px; }
   nav { gap: 2px; }
   nav a { padding: 4px 9px; font-size: 0.7rem; letter-spacing: 0.04em; }
   .section { padding: 20px 0; }
-  .map-link { aspect-ratio: 1 / 1; }
-  .map-wide { display: none; }
-  .map-narrow { display: block; }
-  .map-pin { left: calc(50% + 6px); top: calc(50% - 56px); }
   .map-badge { left: 8px; top: 8px; gap: 6px; padding: 4px 8px 4px 6px; font-size: 12px; }
   .map-badge img { width: 26px; height: 13px; }
-  .map-lake { left: calc(50% + 2px); top: calc(50% + 36px); padding: 3px 7px; font-size: 12px; }
-  .map-usa { left: calc(50% + 100px); top: calc(50% + 130px); font-size: 12px; }
+  .map-lake { padding: 3px 7px; font-size: 12px; }
+  .map-usa { font-size: 12px; }
   .map-dot { left: -15px; top: -40px; width: 30px; height: 30px; background-size: 21px; }
   .map-dot::after { left: 6px; top: 26px; }
   .map-label { left: 20px; top: -37px; font-size: 13px; }
+}
+
+/* Phones: a wider-zoom square map */
+@media (max-width: 560px) {
+  .map-link { aspect-ratio: 1 / 1; }
+  .map-wide { display: none; }
+  .map-link .map-narrow { display: block; top: calc(-50px * var(--k, 1)); width: 335px; height: 385px; transform: scale(var(--k, 1)); transform-origin: 0 0; }
+  .map-pin { left: calc(50% + 6px * var(--k, 1)); top: calc(50% - 56px * var(--k, 1)); }
+  .map-lake { left: calc(50% + 2px * var(--k, 1)); top: calc(50% + 36px * var(--k, 1)); }
+  .map-usa { left: calc(50% + 100px * var(--k, 1)); top: calc(50% + 130px * var(--k, 1)); }
 }
 
 /* Publications */
