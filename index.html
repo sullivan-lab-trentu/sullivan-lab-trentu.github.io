@@ -278,7 +278,6 @@
 <script>
 /* Highlights the menu link for the section on screen. */
 (function () {
-  var m = 0;
   var links = [].slice.call(document.querySelectorAll('nav a[href^="#"]'));
   var secs = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
   function spy() {
