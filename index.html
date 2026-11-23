@@ -213,26 +213,45 @@
 </section>
 
 <figure class="wrap campus-loop">
-  <video id="campus-loop" muted autoplay playsinline preload="auto" aria-label="Short silent montage of Trent's Symons Campus: rowing on the Otonabee River, a science building at dusk, researchers in the lab, a research garden, and the river from above" src="https://trentu.widen.net/content/sgasat0sad/mp4/Trent-main-homepage-video.mp4?quality=hd&amp;u=963kki"></video>
+  <div style="position: relative">
+    <video id="campus-loop" muted autoplay playsinline preload="auto" aria-label="Short silent montage of Trent's Symons Campus: rowing on the Otonabee River, a science building at dusk, researchers in the lab, a research garden, and the river from above" src="https://trentu.widen.net/content/sgasat0sad/mp4/Trent-main-homepage-video.mp4?quality=hd&amp;u=963kki" style="position: relative; transition: opacity 0.6s"></video>
+    <video id="campus-loop-b" muted playsinline preload="auto" aria-hidden="true" src="https://trentu.widen.net/content/sgasat0sad/mp4/Trent-main-homepage-video.mp4?quality=hd&amp;u=963kki" style="position: absolute; inset: 0; height: 100%; opacity: 0; transition: opacity 0.6s"></video>
+  </div>
   <figcaption>Scenes from Trent University's Symons Campus. Video: Trent University.</figcaption>
 </figure>
 <script>
-/* Plays selected shots from Trent's homepage video, in order, on a loop. */
+/* Plays selected shots from Trent's homepage video on a loop, cross-fading between them.
+   Two copies of the video alternate: the next shot is cued in the hidden copy, then faded in.
+   In and out points sit clear of the dissolves in Trent's own edit. */
 (function () {
-  var v = document.getElementById('campus-loop');
-  if (!v) return;
-  var shots = [[0.1, 3.85], [29.3, 32.8], [40.1, 41.9], [48.1, 51.9], [36.6, 39.85], [57.2, 61.8]];
-  var i = 0;
+  var a = document.getElementById('campus-loop'), b = document.getElementById('campus-loop-b');
+  if (!a || !b) return;
+  var shots = [[0.1, 3.8], [29.8, 32.8], [40.3, 41.9], [49.0, 51.7], [37.2, 39.4], [57.2, 61.8]];
+  var FADE = 0.6;
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    v.removeAttribute('autoplay'); v.pause();
-    v.addEventListener('loadedmetadata', function () { v.currentTime = shots[0][0]; });
+    a.removeAttribute('autoplay'); a.pause(); b.style.display = 'none';
+    a.addEventListener('loadedmetadata', function () { a.currentTime = shots[0][0]; });
     return;
   }
-  function jump(n) { i = n % shots.length; v.currentTime = shots[i][0]; }
-  v.addEventListener('loadedmetadata', function () { jump(0); v.play().catch(function () {}); });
-  v.addEventListener('ended', function () { jump(0); v.play().catch(function () {}); });
+  var cur = a, nxt = b, i = 0, busy = false;
+  a.addEventListener('loadedmetadata', function () { a.currentTime = shots[0][0]; a.play().catch(function () {}); });
+  b.addEventListener('loadedmetadata', function () { b.currentTime = shots[1][0]; });
   (function tick() {
-    if (!v.paused && !v.seeking && v.currentTime >= shots[i][1]) jump(i + 1);
+    /* hold the outgoing shot on its last clean frame if the fade runs long */
+    if (busy && !cur.paused && cur.currentTime >= shots[i][1]) cur.pause();
+    if (!busy && !cur.paused && cur.currentTime >= shots[i][1] - FADE) {
+      busy = true;
+      var k = (i + 1) % shots.length;
+      nxt.style.zIndex = 2; cur.style.zIndex = 1;
+      nxt.play().catch(function () {});
+      nxt.style.opacity = 1;
+      setTimeout(function () {
+        cur.pause(); cur.style.opacity = 0;
+        var old = cur; cur = nxt; nxt = old; i = k;
+        nxt.currentTime = shots[(i + 1) % shots.length][0];
+        busy = false;
+      }, FADE * 1000);
+    }
     requestAnimationFrame(tick);
   })();
 })();
