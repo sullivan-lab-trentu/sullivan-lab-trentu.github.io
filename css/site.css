@@ -101,10 +101,12 @@ nav a.join { box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.85); }
 
 /* Trent section */
 .two-col { display: grid; grid-template-columns: 1.4fr 1fr; gap: 32px; align-items: start; }
-.two-col img.square { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 4px; }
+.trent-wrap::after { content: ""; display: block; clear: both; }
+.trent-photo { float: right; width: 40%; margin: 4px 0 16px 32px; }
+.two-col img.square, .trent-photo img.square { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 4px; }
 /* Location map: Google's map shown read-only; a click opens Google Maps.
    The pin is our own, placed by its pixel offset from the map centre at this zoom. */
-.map { grid-column: 1 / -1; }
+.map { clear: both; width: 80%; margin: 32px auto 0; }
 .map-link { display: block; position: relative; aspect-ratio: 5 / 4; border-radius: 4px; overflow: hidden; border: 1px solid var(--line); }
 .map-link iframe { position: absolute; left: 0; top: -50px; width: 100%; height: calc(100% + 50px); border: 0; pointer-events: none; }
 /* The iframes keep a fixed size and are scaled by --k (map width / design width, set by a script),
@@ -177,6 +179,8 @@ figcaption { font-size: 0.85rem; color: var(--muted); margin-top: 8px; }
   body { font-size: 17px; }
   .hero h1 { font-size: 1.7rem; }
   .themes, .two-col, .videos { grid-template-columns: 1fr; }
+  .trent-photo { float: none; width: 100%; margin: 0 0 20px; }
+  .map { width: 100%; margin-top: 24px; }
   .approaches { columns: 1; }
   html { scroll-padding-top: 0; }
   .site-header { position: static; }
