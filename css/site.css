@@ -178,7 +178,8 @@ figcaption { font-size: 0.85rem; color: var(--muted); margin-top: 8px; }
 /* Phones */
 @media (max-width: 720px) {
   body { font-size: 17px; }
-  .hero h1 { font-size: 1.7rem; }
+  .hero h1 { font-size: 1.4rem; }
+  .hero p { font-size: 1.05rem; margin-bottom: 12px; }
   .themes, .two-col, .videos { grid-template-columns: 1fr; }
   .trent-photo { float: none; width: 100%; margin: 0 0 20px; }
   .map { margin-top: 24px; }
@@ -198,8 +199,8 @@ figcaption { font-size: 0.85rem; color: var(--muted); margin-top: 8px; }
   /* Let the hero grow with its text so the heading never spills above the photo */
   .hero { display: grid; }
   .hero img, .hero-text { grid-area: 1 / 1; }
-  .hero img { height: 100%; min-height: 420px; }
-  .hero-text { position: relative; inset: auto; padding-top: 40px; padding-bottom: 28px; }
+  .hero img { height: 100%; min-height: 340px; }
+  .hero-text { position: relative; inset: auto; padding-top: 24px; padding-bottom: 20px; }
   .section { padding: 20px 0; }
   .map-badge { left: 8px; top: 8px; gap: 6px; padding: 4px 8px 4px 6px; font-size: 12px; }
   .map-badge img { width: 26px; height: 13px; }
