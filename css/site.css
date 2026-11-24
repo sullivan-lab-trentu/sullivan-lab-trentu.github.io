@@ -152,6 +152,9 @@ figcaption { font-size: 0.85rem; color: var(--muted); margin-top: 8px; }
 /* People */
 .person { background: var(--tint); border-left: 4px solid var(--heading); padding: 16px 22px; border-radius: 4px; margin-bottom: 14px; }
 .person .role { margin-bottom: 8px; }
+.person::after { content: ""; display: block; clear: both; }
+.pi-photo { float: right; width: 30%; margin: 0 0 12px 24px; }
+.pi-photo img { width: 100%; height: auto; border-radius: 4px; }
 .person-links { margin: 0; font-weight: 600; }
 
 /* Positions */
@@ -179,6 +182,7 @@ figcaption { font-size: 0.85rem; color: var(--muted); margin-top: 8px; }
   .themes, .two-col, .videos { grid-template-columns: 1fr; }
   .trent-photo { float: none; width: 100%; margin: 0 0 20px; }
   .map { margin-top: 24px; }
+  .pi-photo { float: none; width: 100%; margin: 0 0 16px; }
   .approaches { columns: 1; }
   html { scroll-padding-top: 0; }
   .site-header { position: static; }
