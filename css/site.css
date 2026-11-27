@@ -70,18 +70,19 @@ nav a.join { box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.85); }
 .hero-text {
   position: absolute; inset: 0; display: flex; align-items: stretch;
   background: linear-gradient(to top, rgba(10, 30, 22, 0.78) 0%, rgba(10, 30, 22, 0.15) 45%, rgba(10, 30, 22, 0) 70%);
-  padding-top: clamp(28px, 3.5vw, 56px); padding-bottom: 40px;
+  padding-top: calc(clamp(28px, 3.5vw, 56px) + clamp(78px, 6.3vw, 114px)); padding-bottom: 40px;
 }
-/* Headline and line 1 sit at the top of the photo, over the sky and trees; the news band stays at the bottom */
+/* Headline and line 1 sit in the upper part of the photo; the news band stays at the bottom */
 .hero-text .wrap { display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start; }
 .hero .wrap { max-width: 1280px; }
-.hero h1 { color: var(--white); font-family: 'Barlow Semi Condensed', Arial, sans-serif; font-weight: 500; letter-spacing: 0.01em; line-height: 1.2; font-size: clamp(2.65rem, 3.8vw, 4rem); max-width: 1100px; margin: 0 0 10px; }
+.hero h1 { color: var(--white); font-family: 'Roboto Condensed', Arial, sans-serif; font-weight: 500; letter-spacing: 0.01em; line-height: 1.2; font-size: clamp(2.92rem, 4.18vw, 4.4rem); max-width: 1100px; margin: 0 0 10px; }
 .hero p { color: var(--white); font-size: clamp(1.21rem, 1.54vw, 1.54rem); max-width: 900px; }
-.hero .tagline { font-family: 'Barlow Semi Condensed', Arial, sans-serif; font-weight: 500; line-height: 1.25; font-size: clamp(1.69rem, 2.16vw, 2.16rem); max-width: 1000px; margin: 0 0 22px; }
-.hero .hero-head { max-width: 100%; margin-left: -18px; padding: 14px 18px 16px; border-radius: 6px; background: rgba(47, 93, 138, 0.38); }
+.hero .tagline { font-family: 'Roboto Condensed', Arial, sans-serif; font-weight: 500; line-height: 1.25; font-size: clamp(1.86rem, 2.38vw, 2.38rem); max-width: 1000px; margin: 0 0 22px; }
+.hero .hero-head { width: fit-content; max-width: 100%; margin-left: -16px; padding: 12px 16px 14px; border-radius: 6px; background: rgba(47, 93, 138, 0.38); }
+@media (max-width: 1120px) { .hero .hero-head { margin-left: -8px; padding: 10px 8px 12px; } }
 .hero .hero-head .tagline { margin-bottom: 0; }
 .hero-text .wrap > .hero-head + .hero-news { margin-top: 22px; }
-.hero .hero-news { display: inline-block; font-family: Montserrat, Arial, sans-serif; font-weight: 400; font-size: clamp(1.15rem, 1.46vw, 1.46rem); max-width: 900px; margin: 0; padding: 10px 16px; border-radius: 4px; background: rgba(21, 71, 52, 0.88); }
+.hero .hero-news { display: inline-block; font-family: Montserrat, Arial, sans-serif; font-weight: 400; font-size: clamp(1.27rem, 1.61vw, 1.61rem); max-width: 990px; margin: 0; padding: 10px 16px; border-radius: 4px; background: rgba(21, 71, 52, 0.88); }
 .hero-cta { display: inline-block; margin-left: 4px; padding: 1px 7px; border-radius: 4px; background: var(--white); color: var(--green); font-weight: 600; line-height: 1.35; text-decoration: none; white-space: nowrap; }
 .hero-cta:hover { background: #e5efe9; color: var(--green); }
 .hero h1, .hero p { text-shadow: 0 2px 8px rgba(0, 0, 0, 0.55), 0 0 2px rgba(0, 0, 0, 0.35); }
@@ -240,11 +241,11 @@ figcaption { font-size: 0.85rem; color: var(--muted); margin-top: 8px; }
 
 /* Phones: tagline and news line sizes; the call-to-action moves below the news line as a larger tap target */
 @media (max-width: 720px) {
-  .hero h1 { font-size: 1.75rem; margin-bottom: 10px; }
-  .hero .tagline { font-size: 1.2rem; margin-bottom: 16px; }
-  .hero .hero-news { font-size: 0.875rem; line-height: 1.55; padding: 10px 14px; margin-bottom: 0; }
-  .hero-cta { display: block; width: max-content; margin: 10px 0 0; padding: 8px 16px; font-size: 0.95rem; line-height: 1.4; }
+  .hero h1 { font-size: 1.93rem; margin-bottom: 10px; }
+  .hero .tagline { font-size: 1.32rem; margin-bottom: 16px; }
+  .hero .hero-news { font-size: 0.96rem; line-height: 1.55; padding: 10px 14px; margin-bottom: 0; }
+  .hero-cta { display: block; width: max-content; margin: 10px 0 0; padding: 8px 16px; font-size: 1.05rem; line-height: 1.4; }
 }
 @media (max-width: 720px) {
-  .hero .hero-head { margin-left: -12px; padding: 10px 12px 12px; }
+  .hero .hero-head { margin-left: -8px; padding: 10px 8px 12px; }
 }
