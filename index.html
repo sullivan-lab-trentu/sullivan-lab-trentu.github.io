@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@500&family=Montserrat:wght@400;600;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/site.css?v=23">
+<link rel="stylesheet" href="css/site.css?v=24">
 <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://sullivanlab.ca/">
@@ -44,8 +44,8 @@
   <div class="hero-text">
     <div class="wrap">
       <div class="hero-head">
-        <h1>Understanding chemical transformations in the environment</h1>
-        <p class="tagline">To predict their impacts and design safer chemicals &amp; cleaner water</p>
+        <h1>Understanding chemical transformations in the&nbsp;environment</h1>
+        <p class="tagline">To predict their impacts and design safer chemicals &amp; cleaner&nbsp;water</p>
       </div>
       <p class="hero-news">The Sullivan Lab moves to Trent University in January 2027 and is now recruiting postdocs, a lab manager, and students. <a class="hero-cta" href="#join">See open positions</a></p>
     </div>
@@ -297,6 +297,53 @@
   </div>
 </footer>
 
+<script>
+/* Fits the blue banner to the longest line of the headline and line 1, so it has equal space on both sides.
+   If narrowing the banner makes the balanced lines re-wrap, it widens in small steps until they match again. */
+(function () {
+  var head = document.querySelector('.hero-head');
+  if (!head || !document.createRange) return;
+  var parts = head.querySelectorAll('h1, .tagline');
+  function lines() {
+    var n = [], right = 0;
+    [].forEach.call(parts, function (el) {
+      var r = document.createRange(); r.selectNodeContents(el);
+      var rects = r.getClientRects(); n.push(rects.length);
+      [].forEach.call(rects, function (rc) { if (rc.right > right) right = rc.right; });
+    });
+    return { count: n.join(), right: right };
+  }
+  function fit() {
+    head.style.width = '';
+    if (window.matchMedia('(max-width: 720px)').matches) { matchNews(); return; }
+    var full = head.getBoundingClientRect(), before = lines();
+    if (before.right <= full.left) return;
+    var w = Math.ceil(before.right - full.left + parseFloat(getComputedStyle(head).paddingRight) + 2);
+    head.style.width = w + 'px';
+    while (lines().count !== before.count && w < full.width) { w += 6; head.style.width = w + 'px'; }
+    if (lines().count !== before.count) head.style.width = '';
+    matchNews();
+  }
+  /* Sets the green band to the blue banner's width, unless narrowing it would add a line */
+  var news = document.querySelector('.hero-news');
+  function rows(el) {
+    var r = document.createRange(); r.selectNodeContents(el); var tops = {};
+    [].forEach.call(r.getClientRects(), function (rc) { tops[Math.round(rc.top)] = 1; });
+    return Object.keys(tops).length;
+  }
+  function matchNews() {
+    if (!news) return;
+    news.style.width = ''; news.style.maxWidth = '';
+    if (window.matchMedia('(max-width: 720px)').matches) return;
+    var n = rows(news), w = Math.round(head.getBoundingClientRect().width);
+    news.style.maxWidth = 'none'; news.style.width = w + 'px';
+    if (rows(news) > n) { news.style.width = ''; news.style.maxWidth = ''; }
+  }
+  fit();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+  window.addEventListener('resize', fit);
+})();
+</script>
 <script>
 /* Scales the map so it shows the same area at any width (design widths: 1000 px wide map, 335 px phone map). */
 (function () {
